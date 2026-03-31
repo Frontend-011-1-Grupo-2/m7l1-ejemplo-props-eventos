@@ -55,8 +55,8 @@ const handleClickCard = (esCorrecto) => console.log(esCorrecto ? 'Selección cor
 </script>
 
 <template>
-  <div>
-    <div v-for="imagen in imagenes" :key="imagen.id">
+  <div class="row row-cols-md-3 row-cols-lg-4 g-3">
+    <div v-for="imagen in imagenes" :key="imagen.id" class="col">
       <Card :imagen="imagen" @clickCard="handleClickCard" />
     </div>
   </div>

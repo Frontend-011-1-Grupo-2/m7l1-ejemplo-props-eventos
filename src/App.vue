@@ -1,11 +1,11 @@
 <script setup>
-import Board from './components/Board.vue';
+import Navbar from './components/Navbar.vue';
 
 </script>
 
 <template>
-  <h1>Ejemplo comunicación</h1>
-  <Board />
+  <Navbar />
+  <RouterView />
 </template>
 
 <style scoped></style>
