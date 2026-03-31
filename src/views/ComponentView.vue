@@ -4,6 +4,21 @@ import ListLayout from '@/components/ListLayout.vue';
 import TableLayout from '@/components/TableLayout.vue';
 import { ref } from 'vue'
 
+const seleccionComponentes = [
+  {
+    nombre: 'Lista',
+    componente: 'ListLayout'
+  },
+  {
+    nombre: 'Tabla',
+    componente: 'TableLayout'
+  },
+  {
+    nombre: 'Cards',
+    componente: 'CardLayout'
+  }
+]
+
 const usuarios = ref([
   {
     id: 1,
@@ -73,19 +88,13 @@ const layoutSelectHandler = (component) => {
     <p class="small text-muted m-0">Elige la forma de mostrar a los usuarios</p>
     <!-- Navegación para componente dinámico -->
     <ul class="nav nav-tabs">
-      <li class="nav-item">
-        <button class="nav-link" :class="{ active: mostrar === 'ListLayout' }"
-          @click="layoutSelectHandler('ListLayout')">Lista</button>
-      </li>
-      <li class="nav-item">
-        <button class="nav-link" :class="{ active: mostrar === 'TableLayout' }"
-          @click="layoutSelectHandler('TableLayout')">Tabla</button>
-      </li>
-      <li class="nav-item">
-        <button class="nav-link" :class="{ active: mostrar === 'CardLayout' }"
-          @click="layoutSelectHandler('CardLayout')">Cards</button>
+      <li class="nav-item" v-for="componente in seleccionComponentes" :key="componente.componente">
+        <button class="nav-link" :class="{ active: mostrar === componente.componente }"
+          @click="layoutSelectHandler(componente.componente)">{{ componente.nombre }}</button>
       </li>
     </ul>
+    <!-- tabs.CardLayout, tabs.TableLayout -->
+    <!-- tabs.mostrar buscará una propiedad dentro del objeto tabs que se llame mostrar, eso no existe -->
     <component :is="tabs[mostrar]" :usuarios="usuarios" />
   </div>
 </template>
